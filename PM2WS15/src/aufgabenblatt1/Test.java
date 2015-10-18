@@ -6,5 +6,5 @@ package aufgabenblatt1;
  *
  */
 public class Test {
-
+	private int _feld;
 }
