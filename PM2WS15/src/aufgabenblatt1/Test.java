@@ -8,5 +8,5 @@ package aufgabenblatt1;
 public class Test {
 	
 	private String name ="Testklasse";
-
+	private int _feld;
 }
