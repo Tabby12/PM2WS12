@@ -1,6 +1,28 @@
 package aufgabenblatt1;
 
+/**
+ * BTI1-PTP/03, WS 15
+ * Gruppe: Helena Lajevardi (helena.lajevardi@haw-hamburg.de)
+ * 		   Lennart Hartmann (lennart.hartmann@haw-hamburg.de)
+ * Aufgabe: Aufgabenblatt 1, Aufgabe 1.4
+ * 
+ */
+
+/**
+ * Diese Klasse repräsentiert ein Werkzeug mit Hilfsmethoden für Listen.
+ * 
+ * @author Lennart Hartmann
+ * 		   Helena Lajevardi
+ * @version 1.0
+ */
 public class ListenTool {
+	
+  /**
+   * Prueft, ob das erste Element einer Liste eine Zahl ist.
+   * 
+   * @param liste die zu pruefende Liste.
+   * @return wahr, wenn erstes Element eine Zahl ist, ansonsten falsch.
+   */
   public static <T> boolean istErstesElementZahl(ArrayListe<T> liste){
 	if(liste.getAnzahlElemente()>0){
 	  return liste.get(0) instanceof Number;
@@ -8,6 +30,12 @@ public class ListenTool {
 	return false;
   }
   
+  /**
+   * Bildet die Summe der Zahlen in einer Liste mit ganzzahlen.
+   * 
+   * @param liste die Liste mit ganzzahlen, in der die Summe aus den Zahlen gebildet werden soll.
+   * @return die Summe aus den Zahlen.
+   */
   public static int bildeSumme(ArrayListe<Integer> liste){
 	int summe = 0;
 	int anzElemente = liste.getAnzahlElemente();
@@ -19,16 +47,16 @@ public class ListenTool {
 	return summe;
   }
   
-  public static void main(String[] args){
-	ArrayListe<Integer> intL = new ArrayListe<Integer>();
-	intL.hinzufuegen(3);
-	intL.hinzufuegen(7);
-	intL.hinzufuegen(5);
-	intL.hinzufuegen(9);
-	System.out.println("Summe: "+ListenTool.bildeSumme(intL));
-	System.out.println("intL: Erstes Element Zahl? "+ListenTool.istErstesElementZahl(intL));
-	ArrayListe<Integer> intL2 = new ArrayListe<Integer>();
-	System.out.println("intL2: Erstes Element Zahl? "+ListenTool.istErstesElementZahl(intL2));
-  }
+//  public static void main(String[] args){
+//	ArrayListe<Integer> intL = new ArrayListe<Integer>();
+//	intL.hinzufuegen(3);
+//	intL.hinzufuegen(7);
+//	intL.hinzufuegen(5);
+//	intL.hinzufuegen(9);
+//	System.out.println("Summe: "+ListenTool.bildeSumme(intL));
+//	System.out.println("intL: Erstes Element Zahl? "+ListenTool.istErstesElementZahl(intL));
+//	ArrayListe<Integer> intL2 = new ArrayListe<Integer>();
+//	System.out.println("intL2: Erstes Element Zahl? "+ListenTool.istErstesElementZahl(intL2));
+//  }
 }
 
