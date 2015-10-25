@@ -1,5 +1,6 @@
 package aufgabenblatt1;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * BTI1-PTP/03, WS 15
@@ -56,6 +57,16 @@ public class Student implements Comparable<Student>{
 	this.vorname=vorname;
 	this.nachname=nachname;
 	this.matrikelnummer=matrikelnummer;
+	pruefungsleistungen = new ArrayList<Pruefungsleistung>();
+  }
+  
+  /**
+   * Fuegt der Liste der Pruefungsleistungen eine weitere Pruefungsleistung hinzu.
+   * 
+   * @param pruefung  eine neu hinzuzufuegende Pruefungsleistung
+   */
+  public void addPruefungsleistung(Pruefungsleistung pruefung){
+	  pruefungsleistungen.add(pruefung);
   }
 
  /**
@@ -78,10 +89,7 @@ public class Student implements Comparable<Student>{
 	  return pruefungsleistungen;
   }
   
-  public void setPruefungsleistungen(
-		  ArrayList<Pruefungsleistung> pruefungsleistungen) {
-	  this.pruefungsleistungen = pruefungsleistungen;
-  }
+  
   
   @Override
   public int compareTo(Student student) {
@@ -94,5 +102,27 @@ public class Student implements Comparable<Student>{
 	  return rueckgabe;
     }
 
-
+  @Override
+	public String toString() {
+	  Iterator<Pruefungsleistung> it = pruefungsleistungen.iterator();
+	  String str = vorname+" "+nachname+"\n"+matrikelnummer+"\nPruefungsleistungen:";
+	  
+	  if(pruefungsleistungen != null){
+		  while (it.hasNext()){
+			  Pruefungsleistung aktuelleLeistung = it.next();
+			  str += "\n"+aktuelleLeistung.getModulname()+" | "+aktuelleLeistung.getNote()+" Punkte";
+		  }
+	  }else{
+		  str += "\nKeine Pruefungsergebnisse vorhanden";
+	  }
+	  
+	  return str;
+	}
+  
+//  public static void main(String[] args){
+//	  Student std = null;
+//	  std.setPruefungsleistungen(null);
+////	  std.addPruefungsleistung(new Pruefungsleistung("GE1", 15));
+//	  System.out.println(std.toString());	  
+//  }
 }
