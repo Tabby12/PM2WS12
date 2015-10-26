@@ -66,7 +66,7 @@ public class ArrayListe<T> {
   }
   
  /**
-  * Entfernt das uebergebene Element aus der Liste.
+  * Entfernt das uebergebene Element genau einmal aus der Liste (Falls enthalten).
   * 
   * @param element das uebergebene Element.
   */
@@ -91,18 +91,14 @@ public class ArrayListe<T> {
   * @param i die ubergebene Position.
   */
   public void entferneElementAtIndex(int i){
+	//nkb aufschieben UND das letze Element entfernen 
 	if(i < anzahlElemente){  
-		Object[] kopie = new Object[anzahlElemente-1];
-		for(int k=0; k<i;k++){
-			kopie[k]=liste[k];
-		}
 		for(int k=i; k<anzahlElemente-1; k++){
-			kopie[k] = liste[k+1];
+			liste[k] = liste[k+1];
 		}
-		liste = kopie;	  
+		liste[anzahlElemente-1]=null;
 		anzahlElemente--;
 	}
-	//else?
   }
   
  /**
