@@ -1,5 +1,6 @@
 package aufgabenblatt1;
 
+
 /**
  * BTI1-PTP/03, WS 15
  * Gruppe: Helena Lajevardi (helena.lajevardi@haw-hamburg.de)
@@ -53,8 +54,12 @@ public class ArrayListe<T> {
  /**
   * .
   */
+  @SuppressWarnings("unchecked")
   public Object get(int index){
-	return liste[index];
+	if(index < anzahlElemente){  
+		return (T) liste[index];
+	}
+	return null;
   }
   
  /**
@@ -81,15 +86,18 @@ public class ArrayListe<T> {
   * .
   */
   public void entferneElementAtIndex(int i){
-	Object[] kopie = new Object[anzahlElemente-1];
-	for(int k=0; k<i;k++){
-	  kopie[k]=liste[k];
+	if(i < anzahlElemente){  
+		Object[] kopie = new Object[anzahlElemente-1];
+		for(int k=0; k<i;k++){
+			kopie[k]=liste[k];
+		}
+		for(int k=i; k<anzahlElemente-1; k++){
+			kopie[k] = liste[k+1];
+		}
+		liste = kopie;	  
+		anzahlElemente--;
 	}
-	for(int k=i; k<anzahlElemente-1; k++){
-	  kopie[k] = liste[k+1];
-	}
-	liste = kopie;	  
-	anzahlElemente--;
+	//else?
   }
   
  /**
@@ -113,8 +121,9 @@ public class ArrayListe<T> {
  /**
   * .
   */
-  public Object getKleinstesElement(){
-	Object kleinstesElement = null;
+  @SuppressWarnings("unchecked")
+public Object getKleinstesElement(){
+	  Object kleinstesElement = null;
 	  if(anzahlElemente > 0){
 		kleinstesElement = liste[0];
 		for(Object element : liste){
@@ -123,21 +132,7 @@ public class ArrayListe<T> {
 		  }
 		}
 	  }
-	return kleinstesElement;
+	return (T) kleinstesElement;
   }
-  
-//  public static void main(String[] args){
-//	ArrayListe<String> stringList = new ArrayListe<String>();
-//    System.out.println("Abzahl der Elemente: "+stringList.anzahlElemente);
-//    stringList.hinzufuegen("Hallo");
-//    stringList.hinzufuegen("ihr");
-//    stringList.hinzufuegen("Leute");
-//    stringList.hinzufuegen("Aber");
-//    System.out.println("Abzahl der Elemente: "+stringList.anzahlElemente);
-//    //stringList.entferneElementAnIndex(0);
-//    System.out.println("Abzahl der Elemente: "+stringList.anzahlElemente);
-//    System.out.println("Kleinstes Element: "+stringList.getKleinstesElement());
-//    stringList.entfernen("ihr");
-//    System.out.println(stringList.toString());
-//  }
+ 
 }

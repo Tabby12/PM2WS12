@@ -57,7 +57,10 @@ public class ArrayListeCmp<T extends Comparable<T>> {
    */
   @SuppressWarnings("unchecked")
   public T get(int index){
-    return (T)liste[index];
+	if(index < anzahlElemente){  
+		return (T) liste[index];
+	}
+	return null;
   }
 	 
   /**
@@ -75,7 +78,7 @@ public class ArrayListeCmp<T extends Comparable<T>> {
 	  i++;
 	}
 	if(gesuchterIndex != -1){
-	  entferneElementAnIndex(gesuchterIndex);
+	  entferneElementAtIndex(gesuchterIndex);
 	}
   }
 
@@ -83,16 +86,19 @@ public class ArrayListeCmp<T extends Comparable<T>> {
    * 
    * @param i
    */
-  public void entferneElementAnIndex(int i){
-	Object[] kopie = new Object[anzahlElemente-1];
-	for(int k=0; k<i;k++){
-	  kopie[k]=liste[k];
+  public void entferneElementAtIndex(int i){
+    if(i < anzahlElemente){  
+		Object[] kopie = new Object[anzahlElemente-1];
+		for(int k=0; k<i;k++){
+			kopie[k]=liste[k];
+		}
+		for(int k=i; k<anzahlElemente-1; k++){
+			kopie[k] = liste[k+1];
+		}
+		liste = kopie;	  
+		anzahlElemente--;
 	}
-	for(int k=i; k<anzahlElemente-1; k++){
-	  kopie[k] = liste[k+1];
-    }
-	liste = kopie;	  
-    anzahlElemente--;
+	//else?
   }
   
   /**
@@ -131,23 +137,4 @@ public class ArrayListeCmp<T extends Comparable<T>> {
 	}
 	return kleinstesElement;
   }
-	  
-//  public static void main(String[] args){
-//	ArrayListeCmp<String> liste = new ArrayListeCmp<String>();
-//	liste.hinzufuegen("Hallo");
-//	liste.hinzufuegen("Welt");
-//	liste.hinzufuegen("Dummies");
-//	System.out.println("anz. Elemente: "+liste.getAnzahlElemente());
-//	System.out.println(liste.toString());
-//	System.out.println("Kleinstes Element: "+liste.getKleinstesElement());
-//	
-//	ArrayListeCmp<Integer> intList = new ArrayListeCmp<Integer>();
-//	intList.hinzufuegen(new Integer(3));
-//	intList.hinzufuegen(new Integer(1));
-//	intList.hinzufuegen(new Integer(2));
-//	System.out.println(intList.toString());
-//	System.out.println("Kleinstes Element: "+intList.getKleinstesElement());
-//	intList.entfernen(2);
-//	System.out.println(intList.toString());
-//  }
 }
