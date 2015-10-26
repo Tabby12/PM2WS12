@@ -6,6 +6,9 @@ import java.util.Comparator;
 
 import org.junit.Test;
 
+import aufgabenblatt1.Student;
+import aufgabenblatt1.StudentenComparator;
+
 public class StudentenComparatorTest {
 
 	@Test

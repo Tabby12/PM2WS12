@@ -9,7 +9,7 @@ package aufgabenblatt1;
  */
 
 /**
- * Diese Klasse repräsentiert .
+ * Diese Klasse repräsentiert eine Liste, die nur vergleichbare Typen halten kann.
  * 
  * @author Lennart Hartmann
  * 		   Helena Lajevardi
@@ -35,10 +35,11 @@ public class ArrayListeCmp<T extends Comparable<T>> {
     liste = new Object[0];	  
   }
   
-  /**
-   * 
-   * @param element
-   */
+ /**
+  * Fuegt ein Element der Liste hinzu.
+  * 
+  * @param element das element das hinzugefuegt wird.
+  */
   public void hinzufuegen(T element){
 	anzahlElemente += 1;  
 	Object[] kopie = new Object[anzahlElemente];
@@ -50,11 +51,12 @@ public class ArrayListeCmp<T extends Comparable<T>> {
 	liste = kopie;
   }
   
-  /**
-   * 
-   * @param index
-   * @return
-   */
+ /**
+  * Gibt das Objekt am uebergebenen Index zurueck.
+  * 
+  * @param index der uebergebene Index.
+  * @return das Objekt am uebergebenen Index, falls vorhanden, ansonsten null.
+  */
   @SuppressWarnings("unchecked")
   public T get(int index){
 	if(index < anzahlElemente){  
@@ -63,10 +65,11 @@ public class ArrayListeCmp<T extends Comparable<T>> {
 	return null;
   }
 	 
-  /**
-   * 
-   * @param element
-   */
+ /**
+  * Entfernt das uebergebene Element aus der Liste.
+  * 
+  * @param element das uebergebene Element.
+  */
   public void entfernen(T element){
 	int gesuchterIndex = -1;
 	int i = 0;
@@ -82,10 +85,11 @@ public class ArrayListeCmp<T extends Comparable<T>> {
 	}
   }
 
-  /**
-   * 
-   * @param i
-   */
+ /**
+  * Entfernt ein Element an der uebergebenen Position.
+  * 
+  * @param i die ubergebene Position.
+  */
   public void entferneElementAtIndex(int i){
     if(i < anzahlElemente){  
 		Object[] kopie = new Object[anzahlElemente-1];
@@ -101,10 +105,11 @@ public class ArrayListeCmp<T extends Comparable<T>> {
 	//else?
   }
   
-  /**
-   * 
-   * @return
-   */
+ /**
+  * Gibt die Anzahl der Elemente in der Liste zurueck.
+  * 
+  * @return die anzahl der Elemente.
+  */
   public int getAnzahlElemente(){
 	return anzahlElemente;
   }
@@ -120,10 +125,11 @@ public class ArrayListeCmp<T extends Comparable<T>> {
 	return string;
   }
 
-  /**
-   * 
-   * @return
-   */
+ /**
+  * Gibt das kleinste Element einer Liste zurueck.
+  * 
+  * @return kleinstes Element.
+  */
   @SuppressWarnings("unchecked")
   public T getKleinstesElement(){
     T kleinstesElement = null;
@@ -137,4 +143,5 @@ public class ArrayListeCmp<T extends Comparable<T>> {
 	}
 	return kleinstesElement;
   }
+  
 }

@@ -30,7 +30,7 @@ public class StudentTest {
 		Pruefungsleistung pruefung = new Pruefungsleistung("Testpruefung", 15); 
 		
 		std.addPruefungsleistung(pruefung);
-		assertTrue(std.getPruefungsleistungen().contains(pruefung));
+		assertTrue("Pruefung nicht enthalten!",std.getPruefungsleistungen().contains(pruefung));
 	}
 	
 	@Test

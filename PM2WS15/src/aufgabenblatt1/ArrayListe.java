@@ -37,7 +37,7 @@ public class ArrayListe<T> {
   }
   
  /**
-  * Fuegt ein Element zu der Liste hinzu.
+  * Fuegt ein Element der Liste hinzu.
   * 
   * @param element das element das hinzugefuegt wird.
   */
@@ -52,7 +52,10 @@ public class ArrayListe<T> {
   }
   
  /**
-  * .
+  * Gibt das Objekt am uebergebenen Index zurueck.
+  * 
+  * @param index der uebergebene Index.
+  * @return das Objekt am uebergebenen Index, falls vorhanden, ansonsten null.
   */
   @SuppressWarnings("unchecked")
   public Object get(int index){
@@ -83,7 +86,9 @@ public class ArrayListe<T> {
   }
   
  /**
-  * .
+  * Entfernt ein Element an der uebergebenen Position.
+  * 
+  * @param i die ubergebene Position.
   */
   public void entferneElementAtIndex(int i){
 	if(i < anzahlElemente){  
@@ -101,7 +106,9 @@ public class ArrayListe<T> {
   }
   
  /**
-  * .
+  * Gibt die Anzahl der Elemente in der Liste zurueck.
+  * 
+  * @return die anzahl der Elemente.
   */
   public int getAnzahlElemente(){
     return anzahlElemente;
@@ -119,7 +126,9 @@ public class ArrayListe<T> {
   }
   
  /**
-  * .
+  * Gibt das kleinste Element einer Liste zurueck.
+  * 
+  * @return kleinstes Element.
   */
   @SuppressWarnings("unchecked")
 public Object getKleinstesElement(){

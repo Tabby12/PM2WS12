@@ -70,7 +70,7 @@ public class Student implements Comparable<Student>{
   }
 
  /**
-  * Getter & Setter.
+  * Getter.
   */
   public String getVorname() {
 	  return vorname;
@@ -119,10 +119,4 @@ public class Student implements Comparable<Student>{
 	  return str;
 	}
   
-//  public static void main(String[] args){
-//	  Student std = null;
-//	  std.setPruefungsleistungen(null);
-////	  std.addPruefungsleistung(new Pruefungsleistung("GE1", 15));
-//	  System.out.println(std.toString());	  
-//  }
 }

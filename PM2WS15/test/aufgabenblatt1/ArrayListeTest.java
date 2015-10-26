@@ -8,14 +8,14 @@ public class ArrayListeTest {
 
 	
 	@Test
-	public void arrayListeTest(){
+	public void testArrayListe(){
 		ArrayListe<Object> liste = new ArrayListe<>();
 		assertTrue("Objekt nicht erzeugt", liste != null);
 		assertEquals("Falsche \"anzElemente\" bei Erzeugung",0,liste.getAnzahlElemente());
 	}
 	
 	@Test
-	public void getAnzahlElementeTest(){
+	public void testGetAnzahlElemente(){
 		String el0 = "element0";
 		String el1 = "element1";
 		String el2 = "element2";
@@ -30,7 +30,7 @@ public class ArrayListeTest {
 	}
 	
 	@Test
-	public void hinzufuegenTest(){
+	public void testHinzufuegen(){
 		ArrayListe<String> lst = new ArrayListe<String>();
 		assertEquals("Falsche \"anzElemente\" nach Initialisierung",0, lst.getAnzahlElemente());
 		lst.hinzufuegen("elementA");
@@ -42,7 +42,7 @@ public class ArrayListeTest {
 	}
 	
 	@Test 
-	public void getTest(){
+	public void testGet(){
 		
 		ArrayListe<String> lst = makeArrayListe();
 		assertEquals("Keine Rueckgabe von null bei ungueltigem Index", null, lst.get(3));
@@ -52,7 +52,7 @@ public class ArrayListeTest {
 	}
 	
 	@Test
-	public void entfernenTest(){
+	public void testEntfernen(){
 		String el0 = "element0";
 		String el1 = "element1";
 		String el2 = "element2";
@@ -69,7 +69,7 @@ public class ArrayListeTest {
 	}
 	
 	@Test
-	public void entferneElementAtIndexTest(){
+	public void testEntferneElementAtIndex(){
 		String el0 = "element0";
 		String el1 = "element1";
 		String el2 = "element2";
@@ -86,7 +86,7 @@ public class ArrayListeTest {
 	}
 	
 	@Test
-	public void toStringTest(){
+	public void testToString(){
 		String el0 = "element0";
 		String el1 = "element1";
 		String el2 = "element2";
@@ -101,7 +101,7 @@ public class ArrayListeTest {
 	}
 	
 	@Test
-	public void getKleinstesElementTest(){
+	public void testGetKleinstesElement(){
 		ArrayListe<String> lst = new ArrayListe<>();
 		lst.hinzufuegen("elementB");
 		lst.hinzufuegen("elementA");

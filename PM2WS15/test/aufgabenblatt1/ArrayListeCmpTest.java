@@ -9,14 +9,14 @@ public class ArrayListeCmpTest {
 
 		
 	@Test
-	public void arrayListeTest(){
+	public void testArrayListe(){
 		ArrayListeCmp<String> liste = new ArrayListeCmp<>();
 		assertTrue("Objekt nicht erzeugt", liste != null);
 		assertEquals("Falsche \"anzElemente\" bei Erzeugung",0,liste.getAnzahlElemente());
 	}
 		
 	@Test
-	public void getAnzahlElementeTest(){
+	public void testGetAnzahlElemente(){
 		String el0 = "element0";
 		String el1 = "element1";
 		String el2 = "element2";
@@ -31,7 +31,7 @@ public class ArrayListeCmpTest {
 	}
 		
 	@Test
-	public void hinzufuegenTest(){
+	public void testHinzufuegen(){
 		ArrayListeCmp<String> lst = new ArrayListeCmp<>();
 		assertEquals("Falsche \"anzElemente\" nach Initialisierung",0, lst.getAnzahlElemente());
 		lst.hinzufuegen("elementA");
@@ -43,7 +43,7 @@ public class ArrayListeCmpTest {
 	}
 		
 	@Test 
-	public void getTest(){
+	public void testGet(){
 		
 		ArrayListeCmp<String> lst = makeArrayListe();
 		assertEquals("Keine Rueckgabe von null bei ungueltigem Index", null, lst.get(3));
@@ -53,7 +53,7 @@ public class ArrayListeCmpTest {
 	}
 		
 	@Test
-	public void entfernenTest(){
+	public void testEntfernen(){
 		String el0 = "element0";
 		String el1 = "element1";
 		String el2 = "element2";
@@ -70,7 +70,7 @@ public class ArrayListeCmpTest {
 	}
 		
 	@Test
-	public void entferneElementAtIndexTest(){
+	public void testEntferneElementAtIndex(){
 		String el0 = "element0";
 		String el1 = "element1";
 		String el2 = "element2";
@@ -87,7 +87,7 @@ public class ArrayListeCmpTest {
 	}
 		
 	@Test
-	public void toStringTest(){
+	public void testToString(){
 		String el0 = "element0";
 		String el1 = "element1";
 		String el2 = "element2";
@@ -102,8 +102,9 @@ public class ArrayListeCmpTest {
 	}
 		
 	@Test
-	public void getKleinstesElementTest(){
+	public void testGetKleinstesElement(){
 		ArrayListeCmp<String> lst = new ArrayListeCmp<>();
+		assertTrue("",null == lst.getKleinstesElement());
 		lst.hinzufuegen("elementB");
 		lst.hinzufuegen("elementA");
 		lst.hinzufuegen("elementC");
