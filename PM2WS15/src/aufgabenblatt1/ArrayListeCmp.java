@@ -91,18 +91,13 @@ public class ArrayListeCmp<T extends Comparable<T>> {
   * @param i die ubergebene Position.
   */
   public void entferneElementAtIndex(int i){
-    if(i < anzahlElemente){  
-		Object[] kopie = new Object[anzahlElemente-1];
-		for(int k=0; k<i;k++){
-			kopie[k]=liste[k];
-		}
+	if(i < anzahlElemente){  
 		for(int k=i; k<anzahlElemente-1; k++){
-			kopie[k] = liste[k+1];
+			liste[k] = liste[k+1];
 		}
-		liste = kopie;	  
+		liste[anzahlElemente-1]=null;
 		anzahlElemente--;
 	}
-	//else?
   }
   
  /**
