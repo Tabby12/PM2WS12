@@ -1,5 +1,11 @@
+/**
+ * BTI1-PTP/03, WS 15
+ * Gruppe: Helena Lajevardi (helena.lajevardi@haw-hamburg.de)
+ * 		   Lennart Hartmann (lennart.hartmann@haw-hamburg.de)
+ * Aufgabe: Aufgabenblatt 2, Aufgabe 2.2
+ */
+
 package aufgabenblatt2;
-//import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.function.Predicate;
@@ -7,7 +13,8 @@ import java.util.function.Predicate;
 
 /**
  * Bietet eine Methode zur Formatierung von Stringlisten
- * @author Lennart Hartmann
+ * @author Helena Lajevardi, Lennart Hartmann
+ * @version 15.11.2015
  */
 public class Stringverarbeitung {
 	

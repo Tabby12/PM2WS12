@@ -1,8 +1,16 @@
+/**
+ * BTI1-PTP/03, WS 15
+ * Gruppe: Helena Lajevardi (helena.lajevardi@haw-hamburg.de)
+ * 		   Lennart Hartmann (lennart.hartmann@haw-hamburg.de)
+ * Aufgabe: Aufgabenblatt 2, Aufgabe 2.3
+ * 
+ */
+
 package aufgabenblatt2;
 
 /**
  * Klasse zum Sterten von simulierten Rennen
- * @author Lennart Hartmann
+ * @author Helena Lajevardi, Lennart Hartmann
  * @version 14.11.2015
  */
 public class Rennstarter {

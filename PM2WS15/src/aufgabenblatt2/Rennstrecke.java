@@ -1,3 +1,11 @@
+/**
+ * BTI1-PTP/03, WS 15
+ * Gruppe: Helena Lajevardi (helena.lajevardi@haw-hamburg.de)
+ * 		   Lennart Hartmann (lennart.hartmann@haw-hamburg.de)
+ * Aufgabe: Aufgabenblatt 2, Aufgabe 2.3
+ * 
+ */
+
 package aufgabenblatt2;
 
 import java.util.ArrayList;
@@ -6,7 +14,7 @@ import java.util.List;
 
 /**
  * Repraesentiert eine Renstrecke mit Rennleitung
- * @author Lennart Hartmann
+ * @author Helena Lajevardi, Lennart Hartmann
  * @version 14.11.2015
  *
  */

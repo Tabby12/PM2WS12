@@ -1,9 +1,17 @@
+/**
+ * BTI1-PTP/03, WS 15
+ * Gruppe: Helena Lajevardi (helena.lajevardi@haw-hamburg.de)
+ * 		   Lennart Hartmann (lennart.hartmann@haw-hamburg.de)
+ * Aufgabe: Aufgabenblatt 2, Aufgabe 2.3
+ * 
+ */
+
 package aufgabenblatt2;
 
 /**
  * Repraesentiert Kontrollthreads fuer Simulierte Autorennen. Fuehrt mit bestimmter Wahrscheinlichkeit
  * Rennabbrueche herbei
- * @author Lennart Hartmann
+ * @author Helena Lajevardi, Lennart Hartmann
  * @version 14.11.2015
  *
  */
@@ -22,7 +30,7 @@ public class Rennabbruch extends Thread{
 	 */
 	@Override
 	public void run(){
-		while(Math.random() < 0.9){
+		while(Math.random() < 0.99 && !interrupted()){
 			
 			System.err.println("pruefe Abbruchbedingung");
 			try {
