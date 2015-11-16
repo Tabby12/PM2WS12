@@ -38,9 +38,9 @@ public class Rechner {
 	/**
 	 * Wendet die gewaehlte Rechenoperation auf das übergebenene Zahlenpaar an 
 	 * @param operation die gewaehlte Rechenoperation
-	 * @param a	der 1.Operand
-	 * @param b	der 2.Operand
-	 * @return	das ergebnis der Rechenoperation
+	 * @param zahl1	der 1.Operand
+	 * @param zahl2	der 2.Operand
+	 * @return	das Ergebnis der Rechenoperation
 	 */
 	public double berechne(Operation operation, double zahl1, double zahl2){
 		return operationMap.get(operation).apply(zahl1, zahl2);
