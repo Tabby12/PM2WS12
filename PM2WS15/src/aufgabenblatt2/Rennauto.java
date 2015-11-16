@@ -38,7 +38,7 @@ public class Rennauto extends Thread{
 	/**
 	 * Die bis zum aktuellen Zeitpunkt zurueckgelegte Strecke in Metern
 	 */
-	private double aktuelleRosition;
+	private double aktuellePosition;
 	
 	/**
 	 * Der Zeitpunkt des Rennstarts
@@ -64,7 +64,7 @@ public class Rennauto extends Thread{
 	@Override
 	public void run(){
 		startzeitpunkt = System.currentTimeMillis();
-		while(aktuelleRosition<laengeDerRennstrecke && !interrupted()){
+		while(aktuellePosition<laengeDerRennstrecke && !interrupted()){
 			
 			int dT = 800 + (int)(400*Math.random());
 			try{
@@ -74,8 +74,8 @@ public class Rennauto extends Thread{
 				interrupt();
 				
 			}
-			aktuelleRosition += durchschnittsgeschwindigkeit*1;
-			System.out.format("Position von "+getBez()+": %.3f m       dt/[ms] = %d\n",aktuelleRosition, dT);
+			aktuellePosition += durchschnittsgeschwindigkeit*1;
+			System.out.format("Position von "+getBez()+": %.3f m       dt/[ms] = %d\n",aktuellePosition, dT);
 		}
 		benoetigteZeit = System.currentTimeMillis()-startzeitpunkt;
 	}
@@ -85,7 +85,7 @@ public class Rennauto extends Thread{
 	 * @return	die zuruckgelegte Distanz in Metern
 	 */
 	public double getAktuelleRosition(){
-		return aktuelleRosition;
+		return aktuellePosition;
 	}
 	
 	/**

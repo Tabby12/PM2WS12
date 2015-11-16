@@ -30,7 +30,7 @@ public class Rennabbruch extends Thread{
 	 */
 	@Override
 	public void run(){
-		while(Math.random() < 0.9 && !interrupted()){
+		while(Math.random() < 1.0 && !interrupted()){
 			
 			System.err.println("pruefe Abbruchbedingung");
 			try {

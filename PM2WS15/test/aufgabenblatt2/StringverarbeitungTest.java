@@ -16,17 +16,28 @@ import org.junit.Test;
 
 public class StringverarbeitungTest {
 
-	private String[] strArray={"Eingabe","Äußeres",null,"Straßen-Feger"," ein Haus"};
+	private String[] strArray = { "Eingabe", "Äußeres", null, "Straßen-Feger",
+			" ein Haus" };
 	private List<String> strList = Arrays.asList(strArray);
 
-	private String[] vergleichsArray = {"EINGABE","AEUSSERE","STRASSEN","EIN HAUS"};
-	
+	private String[] vergleichsArray = { "EINGABE", "AEUSSERE", "STRASSEN",
+			"EIN HAUS" };
+
 	@Test
 	public void verarbeiteTest() {
 		List<String> bearbeiteteListe = Stringverarbeitung.verarbeite(strList);
-		
-		for(int i=0; i<vergleichsArray.length; i++){
-			assertEquals("Mindestens ein String unterscheidet sich von der Erwartung", vergleichsArray[i], bearbeiteteListe.get(i));
+
+		for (int i = 0; i < vergleichsArray.length; i++) {
+			assertEquals(
+					"Mindestens ein String unterscheidet sich von der Erwartung",
+					vergleichsArray[i], bearbeiteteListe.get(i));
 		}
+	}
+
+	@Test
+	public void nullListeTest() {
+		List<String> nullListe = null;
+		assertTrue("Gibt nicht null zurueck, falls null uebergeben wird",
+				null == Stringverarbeitung.verarbeite(nullListe));
 	}
 }
