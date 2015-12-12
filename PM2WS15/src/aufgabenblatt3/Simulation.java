@@ -1,5 +1,4 @@
 package aufgabenblatt3;
-
 import java.util.Observable;
 import java.util.Random;
 
@@ -17,6 +16,8 @@ public class Simulation extends Observable implements Runnable{
 	@Override
 	public void run() {
 		while(runnning){
+			setChanged();
+	        notifyObservers();
 			Lokfuehrer lokfuehrer = new Lokfuehrer(zufall.nextBoolean(), bhf);
 			System.err.println("Neuer Lokfuehrer erzeugt.");
 			lokfuehrer.start();
@@ -34,9 +35,9 @@ public class Simulation extends Observable implements Runnable{
 		runnning=false;
 	}
 	
-	public static void main(String[] args){
-		Simulation sim = new Simulation();
-		Thread simThread = new Thread(sim);
-		simThread.start();
-	}
+//	public static void main(String[] args){
+//		Simulation sim = new Simulation();
+//		Thread simThread = new Thread(sim);
+//		simThread.start();
+//	}
 }
