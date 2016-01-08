@@ -1,17 +1,37 @@
+/**
+ * BTI1-PTP/03, WS 15
+ * Gruppe: Helena Lajevardi (helena.lajevardi@haw-hamburg.de)
+ * 		   Lennart Hartmann (lennart.hartmann@haw-hamburg.de)
+ * Aufgabe: Aufgabenblatt 3
+ * 
+ */
 package aufgabenblatt3;
 
 import java.util.Observable;
 
 import aufgabenblatt3.Zug;
-
+/**
+ * Repraesentiert einen Rangierbahnhof.
+ * 
+ * @author Helena Lajevardi, Lennart Hartmann
+ */
 public class Rangierbahnhof extends Observable{
+	
+	/**
+	 * Die Anzahl der Gleise im Rangierbahnhof.
+	 */
 	public static final int ANZ_GLEISE = 3;
+	
+	/**
+	 * Eine Liste der Gleise fuer die Belegung der Gleise durch Zuege.
+	 */
 	Zug[] gleise = new Zug[ANZ_GLEISE];
 	
 	/**
-	 * Laesst einen Zug einfahren
-	 * @param gleisNr	die Nr des zu belegenden Gleises
-	 * @param zug		der einfahrende Zug
+	 * Laesst einen Zug einfahren.
+	 * 
+	 * @param gleisNr	die Nr des zu belegenden Gleises.
+	 * @param zug		der einfahrende Zug.
 	 * @throws IllegalAccessException 
 	 */
 	public synchronized void einfahren(int gleisNr, Zug zug) throws IllegalAccessException{
@@ -20,7 +40,7 @@ public class Rangierbahnhof extends Observable{
 		}
 		//solange Gleis besetzt ist
 		while(gleise[gleisNr]!=null){
-			System.err.println("Gleis besetzt");			
+			System.err.println("Gleis besetzt");
 			try{
 				this.wait();
 			}catch(InterruptedException e){
@@ -30,7 +50,7 @@ public class Rangierbahnhof extends Observable{
 		}
 		//Zug auf Gleis abstellen
 		gleise[gleisNr]=zug;
-		System.err.println("Zug auf Gleis "+gleisNr+" eingefahren");	
+		System.err.println("Zug auf Gleis "+gleisNr+" eingefahren");
 		try{
 			Thread.sleep(500);		
 		}catch(InterruptedException e){
@@ -42,9 +62,10 @@ public class Rangierbahnhof extends Observable{
 	}
 	
 	/**
-	 * Laesst einen Zug ausfahren
-	 * @param gleisNr	die Nummer des Gleises, von welchem der Zug abfahren soll 
-	 * @return			der ausfahrende Zug, null falls nicht Gleis nicht belegt
+	 * Laesst einen Zug ausfahren.
+	 * 
+	 * @param gleisNr	die Nummer des Gleises, von welchem der Zug abfahren soll.
+	 * @return			der ausfahrende Zug, null falls Gleis nicht belegt.
 	 * @throws IllegalAccessException 
 	 */
 	public synchronized Zug ausfahren(int gleisNr) throws IllegalAccessException{
@@ -80,9 +101,10 @@ public class Rangierbahnhof extends Observable{
 	}
 	
 	/**
-	 * Pueft, ob Gleis belegt ist
-	 * @param gleisNr	die Nummer des zu pruefenden Gleises
-	 * @return			belegt, oder nicht belegt
+	 * Pueft, ob Gleis belegt ist.
+	 * 
+	 * @param gleisNr	die Nummer des zu pruefenden Gleises.
+	 * @return			belegt, oder nicht belegt.
 	 * @throws IllegalAccessException 
 	 */
 	public boolean istBelegt(int gleisNr) throws IllegalAccessException{
@@ -97,26 +119,3 @@ public class Rangierbahnhof extends Observable{
 	}
 }
 
-//public class Rangierbahnhof {
-//	
-//	private Zug[] zuege;
-//	
-//	public Rangierbahnhof(int anzGleise) {
-//		zuege = new Zug[anzGleise];
-//	}
-//	
-//	public synchronized void einfahren(Zug zug,int gleisNr){
-//		if(zuege[gleisNr]==null){
-//			zuege[gleisNr]= zug;
-//		}
-//	
-//	}
-//	
-//	public synchronized void ausfahren(int gleisNr){
-//		if(zuege[gleisNr] !=null){
-//			zuege[gleisNr]= null;
-//			
-//		}
-//	
-//	}
-//}
