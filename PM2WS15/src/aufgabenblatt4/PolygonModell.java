@@ -39,7 +39,7 @@ public class PolygonModell extends Observable implements Observer{
 	}
 	
 	
-	public void polygonBearbeitungAbschlieﬂen(){
+	public void polygonBearbeitungAbschliessen(){
 		this.polygonListe.add(this.aktuellesPolygon);
 		this.aktuellesPolygon = new Polygon();
 		setChanged();

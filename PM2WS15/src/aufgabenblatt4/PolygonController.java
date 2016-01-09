@@ -7,7 +7,6 @@
 package aufgabenblatt4;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -77,7 +75,7 @@ public class PolygonController extends Application {
 
 			@Override
 			public void handle(ActionEvent event) {
-				model.polygonBearbeitungAbschlieﬂen();
+				model.polygonBearbeitungAbschliessen();
 				polygonListView.setItems(model.getPolygonListe());
 			
 				
