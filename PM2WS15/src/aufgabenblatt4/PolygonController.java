@@ -40,12 +40,14 @@ public class PolygonController extends Application {
 	
 	private PolygonView view;
 	private PolygonModell model;
+	PolygonSkripting polySkript = new PolygonSkripting();
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		model = new PolygonModell();
 		view = new PolygonView(model);
 		initialisiereGUI(primaryStage, model);
+
 		
 		
 	}
@@ -89,8 +91,18 @@ public class PolygonController extends Application {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-				
+				String eingabe = consoleField.getText();
+				Punkt punkt;
+				try {
+					punkt = new Punkt(polySkript.getX(eingabe),polySkript.getY(eingabe));
+					Polygon aktuellesPolygon = model.getAktuellesPolygon();
+					if(aktuellesPolygon!= null){
+						aktuellesPolygon.punktHinzufuegen(punkt);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				consoleField.clear();
 			}
 		});
 
