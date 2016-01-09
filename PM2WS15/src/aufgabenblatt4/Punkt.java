@@ -29,6 +29,10 @@ public class Punkt {
 		this.y = y;
 	}
 	
+	public Punkt() {
+		
+	}
+	
 	public double getX() {
 		return x;
 	}

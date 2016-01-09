@@ -67,7 +67,6 @@ public class PolygonModell extends Observable implements Observer{
 	public void update(Observable o, Object arg) {
 		setChanged();
 		notifyObservers();
-		
 	}
 
 }

@@ -6,8 +6,6 @@
  */
 package aufgabenblatt4;
 
-import com.sun.javafx.scene.paint.GradientUtils.Point;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,7 +48,6 @@ public class PolygonController extends Application {
 		
 		
 	}
-
 	
 	private void initialisiereGUI(Stage primaryStage, PolygonModell model) {
 		
@@ -70,8 +67,7 @@ public class PolygonController extends Application {
 
 			@Override
 			public void handle(ActionEvent event) {
-				model.getPolygone().add(model.getAktuellesPolygon());
-				model.setAktuellesPolygon(new Polygon());
+				model.polygonBearbeitungAbschlieﬂen();
 				
 				
 				
@@ -100,17 +96,10 @@ public class PolygonController extends Application {
 			public void handle(MouseEvent event) {
 				System.out.println(event.getSceneX()+"");
 				Punkt punkt = new Punkt(event.getSceneX(), event.getSceneY());
-				if(model.getAktuellesPolygon()!= null){
-					model.getAktuellesPolygon().punktHinzufuegen(punkt);
-					
-					
-					
+				Polygon aktuellesPolygon = model.getAktuellesPolygon();
+				if(aktuellesPolygon!= null){
+					aktuellesPolygon.punktHinzufuegen(punkt);
 				}
-				else{
-					
-				}
-				
-				
 			}
 		});
 		
