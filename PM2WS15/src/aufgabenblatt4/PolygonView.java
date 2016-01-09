@@ -29,6 +29,7 @@ public class PolygonView extends BorderPane implements Observer{
 	private PolygonModell model;
 	
 	private Path path;
+	ObservableList<PathElement> pathElements;
 	
 	public PolygonView(PolygonModell model) {
 		
@@ -43,10 +44,10 @@ public class PolygonView extends BorderPane implements Observer{
 	private void zeichneAktuellesPolygon() {
 //		if(!path.getElements().isEmpty()){
 			path.getElements().clear();
-			this.getChildren().clear();
+			
 			
 //		}
-		ObservableList<PathElement> pathElements = path.getElements();
+		pathElements = path.getElements();
 		Polygon aktuellesPolygon = model.getAktuellesPolygon();
 		Punkt letzterPunkt = null;
 		if(model.getAktuellesPolygon()!= null){
@@ -58,12 +59,12 @@ public class PolygonView extends BorderPane implements Observer{
 				if(letzterPunkt != null){
 					erzeugeLinie(pathElements, aktuellerPunkt);
 				}
-				erzeugePunkt(aktuellerPunkt);
+				erzeugePunkt(aktuellerPunkt,Color.RED);
 				letzterPunkt = aktuellerPunkt;
 			}
 			path.setStrokeWidth(3);
 			path.setStroke(Color.RED);
-			this.getChildren().add(path);
+			
 		}
 	}
 
@@ -75,14 +76,14 @@ public class PolygonView extends BorderPane implements Observer{
 		pathElements.add(moveToStartpunkt);
 	}
 
-	private void erzeugePunkt(Punkt aktuellerPunkt) {
+	private void erzeugePunkt(Punkt aktuellerPunkt, Color color) {
 		Ellipse ellipse = new Ellipse();
 		ellipse.setCenterX(aktuellerPunkt.getX());
 		ellipse.setCenterY(aktuellerPunkt.getY());
 		ellipse.setRadiusX(1);
 		ellipse.setRadiusY(1);
 		ellipse.setStrokeWidth(3);
-		ellipse.setStroke(Color.RED);
+		ellipse.setStroke(color);
 		this.getChildren().add(ellipse);
 	}
 
@@ -97,12 +98,13 @@ public class PolygonView extends BorderPane implements Observer{
 		
 		List<Polygon> polygone = model.getPolygone();
 		for (Polygon polygon : polygone) {
+			erzeugeStartPunkt(polygon.getPunkte(), pathElements);
 			for (int i = 0; i < polygon.getPunkte().size(); i++) {
 				Punkt punkt = polygon.getPunkte().get(i);
-				Ellipse ellipse = new Ellipse();
-				ellipse.setCenterX(punkt.getX());
-				ellipse.setCenterY(punkt.getY());
+				erzeugePunkt(punkt,Color.BLACK);
+
 			}
+			
 		}
 	}
 	

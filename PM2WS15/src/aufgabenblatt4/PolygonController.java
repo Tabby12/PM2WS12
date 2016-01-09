@@ -16,8 +16,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -62,19 +64,28 @@ public class PolygonController extends Application {
 		//Canvas viewPort = new Canvas(GROESSE / 2, GROESSE + 100);
 		GridPane controlPane = new GridPane();
 		
+		TableView<Polygon> polygonListView = new TableView<>(FXCollections.observableArrayList(model.getPolygone()));
+		polygonListView.setColumnResizePolicy(polygonListView.CONSTRAINED_RESIZE_POLICY);
+		TableColumn<Polygon, String> polygonName = new TableColumn<Polygon, String>("Polygone");
+		polygonName.setCellValueFactory(new PropertyValueFactory<Polygon, String>(model.toString()));
+		polygonListView.getColumns().add(polygonName);
+		
+		
 		Button setzenNeuButton = new Button("Setzen//Neu");
 		setzenNeuButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 				model.polygonBearbeitungAbschlieﬂen();
+				//todo Tabelle aktualisieren
 				
 				
 				
 			}
 		});
-		TableView<Polygon> polygonListView = new TableView<>(FXCollections.observableArrayList(model.getPolygone()));
+		
 		TextField consoleField = new TextField();
+		
 		Button eingabeButton = new Button("Eingabe");
 		eingabeButton.setOnAction(new EventHandler<ActionEvent>() {
 			
