@@ -36,36 +36,7 @@ public class PolygonView extends BorderPane implements Observer{
 		this.model = model;
 		path = new Path();
 		this.getChildren().add(path);
-		//zeichnePolygone();
-		//zeichneAktuellesPolygon();
 		model.addObserver(this);
-	}
-
-	private void zeichneAktuellesPolygon() {
-//		if(!path.getElements().isEmpty()){
-			path.getElements().clear();
-			
-			
-//		}
-		pathElements = path.getElements();
-		Polygon aktuellesPolygon = model.getAktuellesPolygon();
-		Punkt letzterPunkt = null;
-		if(model.getAktuellesPolygon()!= null){
-			List<Punkt> punkte = aktuellesPolygon.getPunkte();
-			if(!punkte.isEmpty()) {
-				erzeugeStartPunkt(punkte, pathElements);
-			}
-			for (Punkt aktuellerPunkt : punkte) {
-				if(letzterPunkt != null){
-					erzeugeLinie(pathElements, aktuellerPunkt);
-				}
-				erzeugePunkt(aktuellerPunkt,Color.RED);
-				letzterPunkt = aktuellerPunkt;
-			}
-			path.setStrokeWidth(3);
-			path.setStroke(Color.RED);
-			
-		}
 	}
 
 	private void erzeugeStartPunkt(List<Punkt> punkte, ObservableList<PathElement> pathElements) {
@@ -94,25 +65,43 @@ public class PolygonView extends BorderPane implements Observer{
 		pathElements.add(lineToAktuellerPunkt);
 	}
 
-	public void zeichnePolygone() {
-		
-		List<Polygon> polygone = model.getPolygonListe();
-		for (Polygon polygon : polygone) {
-			erzeugeStartPunkt(polygon.getPunkte(), pathElements);
-			for (int i = 0; i < polygon.getPunkte().size(); i++) {
-				Punkt punkt = polygon.getPunkte().get(i);
-				erzeugePunkt(punkt,Color.BLACK);
-
-			}
-			
-		}
-	}
-	
 	@Override
 	public void update(Observable o, Object arg) {
-		
 		zeichnePolygone();
-		zeichneAktuellesPolygon();
+	}
+
+	private void zeichnePolygone() {
+		
+		//zeichne aktuelles Polygon
+		zeichnePolygon(model.getAktuellesPolygon(),Color.RED);
+		//zeichne bearbeitete Polygone
+		List<Polygon> polygone = model.getPolygonListe();
+		for (Polygon polygon : polygone) {
+			zeichnePolygon(polygon, Color.BLACK);
+		}
+	
+	}
+
+	private void zeichnePolygon(Polygon polygon, Color color) {
+		
+		if(polygon != null){
+			pathElements = path.getElements();
+			Punkt letzterPunkt = null;
+			List<Punkt> punkte = polygon.getPunkte();
+			if(!punkte.isEmpty()) {
+				erzeugeStartPunkt(punkte, pathElements);
+			}
+			for (Punkt aktuellerPunkt : punkte) {
+				if(letzterPunkt != null){
+					erzeugeLinie(pathElements, aktuellerPunkt);
+				}
+				erzeugePunkt(aktuellerPunkt,color);
+				letzterPunkt = aktuellerPunkt;
+			}
+			path.setStrokeWidth(3);
+			path.setStroke(color);
+			
+		}
 	}
 
 
