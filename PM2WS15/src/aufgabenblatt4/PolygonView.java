@@ -96,7 +96,7 @@ public class PolygonView extends BorderPane implements Observer{
 
 	public void zeichnePolygone() {
 		
-		List<Polygon> polygone = model.getPolygone();
+		List<Polygon> polygone = model.getPolygonListe();
 		for (Polygon polygon : polygone) {
 			erzeugeStartPunkt(polygon.getPunkte(), pathElements);
 			for (int i = 0; i < polygon.getPunkte().size(); i++) {

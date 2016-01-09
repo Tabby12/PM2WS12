@@ -15,6 +15,7 @@ import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -64,22 +65,21 @@ public class PolygonController extends Application {
 		//Canvas viewPort = new Canvas(GROESSE / 2, GROESSE + 100);
 		GridPane controlPane = new GridPane();
 		
-		TableView<Polygon> polygonListView = new TableView<>(FXCollections.observableArrayList(model.getPolygone()));
-		polygonListView.setColumnResizePolicy(polygonListView.CONSTRAINED_RESIZE_POLICY);
+		ListView<Polygon> polygonListView = new ListView<>();
+		//polygonListView.setColumnResizePolicy(polygonListView.CONSTRAINED_RESIZE_POLICY);
 		TableColumn<Polygon, String> polygonName = new TableColumn<Polygon, String>("Polygone");
-		polygonName.setCellValueFactory(new PropertyValueFactory<Polygon, String>(model.toString()));
-		polygonListView.getColumns().add(polygonName);
+		polygonName.setCellValueFactory(new PropertyValueFactory<Polygon, String>("name"));
+		//polygonListView.getColumns().add(polygonName);
 		
 		
-		Button setzenNeuButton = new Button("Setzen//Neu");
+		Button setzenNeuButton = new Button("Setzen/Neu");
 		setzenNeuButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 				model.polygonBearbeitungAbschlieﬂen();
-				//todo Tabelle aktualisieren
-				
-				
+				polygonListView.setItems(model.getPolygonListe());
+			
 				
 			}
 		});

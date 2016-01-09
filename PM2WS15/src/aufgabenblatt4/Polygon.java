@@ -24,6 +24,8 @@ public class Polygon extends Observable {
 	 */
 	private List<Punkt> punkte;
 	
+	private String name;
+	
 	public Polygon() {
 		this.punkte = new ArrayList<Punkt>();
 	}
@@ -43,7 +45,7 @@ public class Polygon extends Observable {
 
 	@Override
 	public String toString() {
-		return "Polygon mit " + punkte.size() + " Punkten";
+		return name = "Polygon mit " + punkte.size() + " Punkten";
 	}
 
 	public List<Punkt> getPunkte() {

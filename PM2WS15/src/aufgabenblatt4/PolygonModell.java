@@ -46,11 +46,11 @@ public class PolygonModell extends Observable implements Observer{
 		notifyObservers();
 	}
 	
-	public List<Polygon> getPolygone() {
+
+
+	public ObservableList<Polygon> getPolygonListe() {
 		return polygonListe;
 	}
-	
-	
 
 
 	public Polygon getAktuellesPolygon() {
