@@ -1,6 +1,7 @@
 /**
  * BTI1-PTP/03, WS 15
  * Gruppe: Helena Lajevardi (helena.lajevardi@haw-hamburg.de)
+ *         Lennart Hartmann (lennart.hartmann@haw-hamburg.de)
  * Aufgabe: Aufgabenblatt 4
  * 
  */
@@ -26,35 +27,43 @@ import javafx.stage.Stage;
 /**
  * Repraesentiert einen Controller fuer Polygone.
  * 
- * @author Helena Lajevardi
+ * @author Helena Lajevardi, Lennart Hartmann
  */
 public class PolygonController extends Application {
 
 	/**
-	* Startet die Anwendung.
-	* @param args nichts
-	*/
+	 * Die Darstellung fuer die Polygone.
+	 */
+	private PolygonView view;
+	
+	/**
+	 * Die Daten fuer die Darstellung.
+	 */
+	private PolygonModell model;
+	
+	/**
+	 * Dient der Verarbeitung der eingegebenen Befehle.
+	 */
+	PolygonSkripting polySkript = new PolygonSkripting();
+	
+	/**
+	 * Startet die Anwendung.
+	 * @param args nichts
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-	private PolygonView view;
-	private PolygonModell model;
-	PolygonSkripting polySkript = new PolygonSkripting();
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		model = new PolygonModell();
 		view = new PolygonView(model);
 		initialisiereGUI(primaryStage, model);
-
-		
-		
 	}
 	
 	private void initialisiereGUI(Stage primaryStage, PolygonModell model) {
 		
-		int GROESSE = 400;
+		int GROESSE = 500;
 		
 		primaryStage.setTitle("Polygon Zeicheneditor");
 		
@@ -62,15 +71,11 @@ public class PolygonController extends Application {
 		ObservableList<Node> containerContent = container.getItems();
 		container.setOrientation(Orientation.HORIZONTAL);
 
-		//Canvas viewPort = new Canvas(GROESSE / 2, GROESSE + 100);
 		GridPane controlPane = new GridPane();
 		
 		ListView<Polygon> polygonListView = new ListView<>();
-		//polygonListView.setColumnResizePolicy(polygonListView.CONSTRAINED_RESIZE_POLICY);
 		TableColumn<Polygon, String> polygonName = new TableColumn<Polygon, String>("Polygone");
 		polygonName.setCellValueFactory(new PropertyValueFactory<Polygon, String>("name"));
-		//polygonListView.getColumns().add(polygonName);
-		
 		
 		Button setzenNeuButton = new Button("Setzen/Neu");
 		setzenNeuButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -79,8 +84,6 @@ public class PolygonController extends Application {
 			public void handle(ActionEvent event) {
 				model.polygonBearbeitungAbschliessen();
 				polygonListView.setItems(model.getPolygonListe());
-			
-				
 			}
 		});
 		
@@ -106,11 +109,6 @@ public class PolygonController extends Application {
 			}
 		});
 
-		controlPane.add(setzenNeuButton, 0, 0);
-		controlPane.add(polygonListView, 0, 1);
-		controlPane.add(consoleField, 0, 2);
-		controlPane.add(eingabeButton, 0, 3);
-		
 		view.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
 			@Override
@@ -123,6 +121,11 @@ public class PolygonController extends Application {
 				}
 			}
 		});
+		
+		controlPane.add(setzenNeuButton, 0, 0);
+		controlPane.add(polygonListView, 0, 1);
+		controlPane.add(consoleField, 0, 2);
+		controlPane.add(eingabeButton, 0, 3);
 		
 		containerContent.add(view);
 		containerContent.add(controlPane);
