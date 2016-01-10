@@ -1,6 +1,7 @@
 /**
  * BTI1-PTP/03, WS 15
  * Gruppe: Helena Lajevardi (helena.lajevardi@haw-hamburg.de)
+ *         Lennart Hartmann (lennart.hartmann@haw-hamburg.de)
  * Aufgabe: Aufgabenblatt 4
  * 
  */
@@ -9,7 +10,7 @@ package aufgabenblatt4;
 /**
  * Repraesentiert einen Punkt eines Polygons.
  * 
- * @author Helena Lajevardi
+ * @author Helena Lajevardi, Lennart Hartmann
  */
 public class Punkt {
 	
@@ -23,16 +24,18 @@ public class Punkt {
 	 */
 	private double y;
 	
-	
+	/**
+	 * Konstruktor.
+	 */
 	public Punkt(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
 	
-	public Punkt() {
-		
-	}
-	
+
+	/**
+	 * Getter & Setter.
+	 */
 	public double getX() {
 		return x;
 	}
@@ -46,8 +49,6 @@ public class Punkt {
 		this.y = y;
 	}
 	
-
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -59,6 +60,7 @@ public class Punkt {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -79,10 +81,5 @@ public class Punkt {
 	public String toString() {
 		return "Punkt [x=" + x + ", y=" + y + "]";
 	}
-
 	
-	
-	
-	
-
 }
