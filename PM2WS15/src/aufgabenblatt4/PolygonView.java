@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.rmi.CORBA.PortableRemoteObjectDelegate;
+
 import javafx.collections.ObservableList;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -22,21 +24,41 @@ import javafx.scene.shape.PathElement;
 /**
  * Repraesentiert die Darstellung fuer Polygone.
  * 
- * @author Helena Lajevardi
+ * @author Helena Lajevardi, Lennart Hartmann
+ * @version 10.1.2016
  */
 public class PolygonView extends BorderPane implements Observer{
 	
 	private PolygonModell model;
 	
-	private Path path;
-	ObservableList<PathElement> pathElements;
+	private Path pathSchwarz;
+	private Path pathRot;
+	//ObservableList<PathElement> pathElements;
+	
 	
 	public PolygonView(PolygonModell model) {
 		
 		this.model = model;
-		path = new Path();
-		this.getChildren().add(path);
 		model.addObserver(this);
+		pathSchwarz = new Path();
+		pathRot = new Path();
+		this.getChildren().add(pathSchwarz);
+		this.getChildren().add(pathRot);
+		
+		pathSchwarz.setStrokeWidth(3);
+		pathSchwarz.setStroke(Color.BLACK);
+		pathRot.setStrokeWidth(3);
+		pathRot.setStroke(Color.RED);
+		
+		// Testblock
+//		MoveTo movRot = new MoveTo();
+//		movRot.setX(0);
+//		movRot.setY(0);
+//		LineTo roteLinie=new LineTo();
+//		roteLinie.setX(50);
+//		roteLinie.setY(50);
+//		pathRot.getElements().add(movRot);
+//		pathRot.getElements().add(roteLinie);
 	}
 
 	private void erzeugeStartPunkt(List<Punkt> punkte, ObservableList<PathElement> pathElements) {
@@ -67,45 +89,53 @@ public class PolygonView extends BorderPane implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
+		pathRot.getElements().clear();//-alles
 		zeichnePolygone();
 	}
-
+	
+	/**
+	 * Fuegt der Darstellung alle Polygone hinzu
+	 */
 	private void zeichnePolygone() {
 		
-		//zeichne aktuelles Polygon
+		
+		//fuege aktuelles Polygon hinzu
 		zeichnePolygon(model.getAktuellesPolygon(),Color.RED);
-		//zeichne bearbeitete Polygone
+		
+		//fuege bearbeitete Polygone hinzu
 		List<Polygon> polygone = model.getPolygonListe();
 		for (Polygon polygon : polygone) {
 			zeichnePolygon(polygon, Color.BLACK);
 		}
-	
 	}
 
+	/**
+	 * Fuegt der Darstellung ein Polygon hinzu
+	 * @param polygon	das Darzustellende Polygon
+	 * @param color	 	die gewuenschte Farbe
+	 */
 	private void zeichnePolygon(Polygon polygon, Color color) {
 		
 		if(polygon != null){
-			pathElements = path.getElements();
+			
+			ObservableList<PathElement> pathElements=null;
+			if(color == Color.RED){
+				pathElements = pathRot.getElements();           //- ObservableList<PathElement>
+			}else{
+				pathElements = pathSchwarz.getElements(); 
+			}
 			Punkt letzterPunkt = null;
 			List<Punkt> punkte = polygon.getPunkte();
 			if(!punkte.isEmpty()) {
-				erzeugeStartPunkt(punkte, pathElements);
+				erzeugeStartPunkt(punkte, pathElements);									//-ObservableList<PathElement>
 			}
 			for (Punkt aktuellerPunkt : punkte) {
 				if(letzterPunkt != null){
-					erzeugeLinie(pathElements, aktuellerPunkt);
+					erzeugeLinie(pathElements, aktuellerPunkt);  //aenderung 				//-ObservableList<PathElement>
 				}
 				erzeugePunkt(aktuellerPunkt,color);
 				letzterPunkt = aktuellerPunkt;
 			}
-			path.setStrokeWidth(3);
-			path.setStroke(color);
-			
 		}
 	}
-
-
-
-	
-	
 }
