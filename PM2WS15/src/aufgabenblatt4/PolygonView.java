@@ -1,6 +1,7 @@
 /**
  * BTI1-PTP/03, WS 15
  * Gruppe: Helena Lajevardi (helena.lajevardi@haw-hamburg.de)
+ *         Lennart Hartmann (lennart.hartmann@haw-hamburg.de)
  * Aufgabe: Aufgabenblatt 4
  * 
  */
@@ -9,8 +10,6 @@ package aufgabenblatt4;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-
-import javax.rmi.CORBA.PortableRemoteObjectDelegate;
 
 import javafx.collections.ObservableList;
 import javafx.scene.layout.BorderPane;
@@ -25,17 +24,27 @@ import javafx.scene.shape.PathElement;
  * Repraesentiert die Darstellung fuer Polygone.
  * 
  * @author Helena Lajevardi, Lennart Hartmann
- * @version 10.1.2016
  */
 public class PolygonView extends BorderPane implements Observer{
 	
+	/**
+	 * Die Daten fuer die Darstellung.
+	 */
 	private PolygonModell model;
 	
+	/**
+	 * Enthealt die Formen der bearbeiteten Polygone.
+	 */
 	private Path pathSchwarz;
+	
+	/**
+	 * Enthealt die Form des aktuellen Polygons.
+	 */
 	private Path pathRot;
-	//ObservableList<PathElement> pathElements;
 	
-	
+	/**
+	 * Konstruktor.
+	 */
 	public PolygonView(PolygonModell model) {
 		
 		this.model = model;
@@ -50,17 +59,11 @@ public class PolygonView extends BorderPane implements Observer{
 		pathRot.setStrokeWidth(3);
 		pathRot.setStroke(Color.RED);
 		
-		// Testblock
-//		MoveTo movRot = new MoveTo();
-//		movRot.setX(0);
-//		movRot.setY(0);
-//		LineTo roteLinie=new LineTo();
-//		roteLinie.setX(50);
-//		roteLinie.setY(50);
-//		pathRot.getElements().add(movRot);
-//		pathRot.getElements().add(roteLinie);
 	}
 
+	/**
+	 * Erzeugt einen Startpunkt.
+	 */
 	private void erzeugeStartPunkt(List<Punkt> punkte, ObservableList<PathElement> pathElements) {
 		MoveTo moveToStartpunkt = new MoveTo();
 		Punkt startPunkt = punkte.get(0);
@@ -69,6 +72,9 @@ public class PolygonView extends BorderPane implements Observer{
 		pathElements.add(moveToStartpunkt);
 	}
 
+	/**
+	 * Erzeugt einen Punkt.
+	 */
 	private void erzeugePunkt(Punkt aktuellerPunkt, Color color) {
 		Ellipse ellipse = new Ellipse();
 		ellipse.setCenterX(aktuellerPunkt.getX());
@@ -80,6 +86,9 @@ public class PolygonView extends BorderPane implements Observer{
 		this.getChildren().add(ellipse);
 	}
 
+	/**
+	 * Erzeugt eine Linie.
+	 */
 	private void erzeugeLinie(ObservableList<PathElement> pathElements, Punkt aktuellerPunkt) {
 		LineTo lineToAktuellerPunkt = new LineTo();
 		lineToAktuellerPunkt.setX(aktuellerPunkt.getX());
@@ -89,7 +98,7 @@ public class PolygonView extends BorderPane implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		pathRot.getElements().clear();//-alles
+		pathRot.getElements().clear();
 		zeichnePolygone();
 	}
 	
@@ -97,7 +106,6 @@ public class PolygonView extends BorderPane implements Observer{
 	 * Fuegt der Darstellung alle Polygone hinzu
 	 */
 	private void zeichnePolygone() {
-		
 		
 		//fuege aktuelles Polygon hinzu
 		zeichnePolygon(model.getAktuellesPolygon(),Color.RED);
@@ -110,9 +118,9 @@ public class PolygonView extends BorderPane implements Observer{
 	}
 
 	/**
-	 * Fuegt der Darstellung ein Polygon hinzu
-	 * @param polygon	das Darzustellende Polygon
-	 * @param color	 	die gewuenschte Farbe
+	 * Fuegt der Darstellung ein Polygon hinzu.
+	 * @param polygon	das Darzustellende Polygon.
+	 * @param color	 	die gewuenschte Farbe.
 	 */
 	private void zeichnePolygon(Polygon polygon, Color color) {
 		
@@ -120,18 +128,18 @@ public class PolygonView extends BorderPane implements Observer{
 			
 			ObservableList<PathElement> pathElements=null;
 			if(color == Color.RED){
-				pathElements = pathRot.getElements();           //- ObservableList<PathElement>
+				pathElements = pathRot.getElements();
 			}else{
 				pathElements = pathSchwarz.getElements(); 
 			}
 			Punkt letzterPunkt = null;
 			List<Punkt> punkte = polygon.getPunkte();
 			if(!punkte.isEmpty()) {
-				erzeugeStartPunkt(punkte, pathElements);									//-ObservableList<PathElement>
+				erzeugeStartPunkt(punkte, pathElements);
 			}
 			for (Punkt aktuellerPunkt : punkte) {
 				if(letzterPunkt != null){
-					erzeugeLinie(pathElements, aktuellerPunkt);  //aenderung 				//-ObservableList<PathElement>
+					erzeugeLinie(pathElements, aktuellerPunkt);
 				}
 				erzeugePunkt(aktuellerPunkt,color);
 				letzterPunkt = aktuellerPunkt;
