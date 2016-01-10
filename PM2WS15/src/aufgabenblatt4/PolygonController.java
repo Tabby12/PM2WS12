@@ -113,7 +113,6 @@ public class PolygonController extends Application {
 
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println(event.getSceneX()+"");
 				Punkt punkt = new Punkt(event.getSceneX(), event.getSceneY());
 				Polygon aktuellesPolygon = model.getAktuellesPolygon();
 				if(aktuellesPolygon!= null){
