@@ -76,6 +76,7 @@ public class PolygonController extends Application {
 		ListView<Polygon> polygonListView = new ListView<>();
 		TableColumn<Polygon, String> polygonName = new TableColumn<Polygon, String>("Polygone");
 		polygonName.setCellValueFactory(new PropertyValueFactory<Polygon, String>("name"));
+		polygonListView.setItems(model.getPolygonListe());
 		
 		Button setzenNeuButton = new Button("Setzen/Neu");
 		setzenNeuButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -83,7 +84,6 @@ public class PolygonController extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				model.polygonBearbeitungAbschliessen();
-				polygonListView.setItems(model.getPolygonListe());
 			}
 		});
 		
