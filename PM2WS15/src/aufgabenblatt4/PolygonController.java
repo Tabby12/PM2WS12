@@ -103,7 +103,7 @@ public class PolygonController extends Application {
 						aktuellesPolygon.punktHinzufuegen(punkt);
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					
 				}
 				consoleField.clear();
 			}

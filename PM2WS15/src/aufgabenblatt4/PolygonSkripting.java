@@ -31,7 +31,7 @@ public class PolygonSkripting {
 	 * Konstruktor
 	 */
 	public PolygonSkripting() {
-		pattern = Pattern.compile("(bewege)\\s->" + "\\s(0|-?[0-9]*\\.?[0-9]*),\\s?(0|-?[0-9]*\\.?[0-9]*)");
+		pattern = Pattern.compile("(bewege)\\s->\\s(0|-?[0-9]*\\.?[0-9]*),\\s?(0|-?[0-9]*\\.?[0-9]*)");
 		matcher = null;
 	}
 	
@@ -56,7 +56,7 @@ public class PolygonSkripting {
 	 */
 	public double getX(String befehl) throws Exception {
 		if (istGueltigerBefehl(befehl)) {
-			return new Double(matcher.group(3));
+			return new Double(matcher.group(2));
 		} else {
 			throw new Exception("Kein gueltiger Befehl!");
 		}
@@ -71,7 +71,7 @@ public class PolygonSkripting {
 	 */
 	public double getY(String befehl) throws Exception {
 		if (istGueltigerBefehl(befehl)) {
-			return new Double(matcher.group(2));
+			return new Double(matcher.group(3));
 		} else {
 			throw new Exception("Kein gueltiger Befehl!");
 		}
